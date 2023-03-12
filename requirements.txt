@@ -1,0 +1,7 @@
+pyautogui
+socket
+time
+subprocess
+_thread
+keyboard
+PyPDF2
