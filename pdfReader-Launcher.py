@@ -1,5 +1,5 @@
 from PyPDF2 import PdfReader
-from botScriptLauncher import SubBot
+from botScript import SubBot
 import time
 
 # a function that correct the form of string to write in js console
@@ -26,7 +26,7 @@ def remove_last_space_or_newline(string):
     return string
 
 # Read the PDF file as text
-reader = PdfReader("./exemple.pdf")
+reader = PdfReader("./example.pdf")
 text = ""
 for page in reader.pages:
     text += page.extract_text() + "\n"
@@ -44,11 +44,11 @@ for chunk in text_chunks:
     escaped_js_string = escape_js_string(request)
     subBot = SubBot()
     subBot.Instr_3 = r"textareaI.value = '" + escaped_js_string + chunk + r"'" 
-    # time.sleep(2)
     # print(subBot.Instr_3)
-    print(subBot.main())
+    # print(subBot.main())
     completion =  subBot.main()
-    generated_text.append(completion.choices[0].text)
+    print(completion)
+    generated_text.append(completion)
 
 # Combine the generated text into a single string
 full_text = "".join(generated_text)
@@ -56,5 +56,5 @@ full_text = "".join(generated_text)
 formatted_message = "# PDF Text\n\n" + full_text
 
 # Save the message to a file
-with open("generatedPDF.pdf", "w") as f:
+with open("generatedPDF.txt", "w") as f:
     f.write(formatted_message)

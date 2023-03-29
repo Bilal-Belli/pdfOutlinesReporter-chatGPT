@@ -5,12 +5,11 @@ import subprocess       # to run the cmd command.
 from _thread import *   # to run the bot thread
 import keyboard         # to type the instructions on console
 import pyperclip        # to use 'paste'
-
 class SubBot:
     # javascript console commandes
-    Instr_1 = r"console.log(document.querySelector('textarea'));"
+    # Instr_1 = r"console.log(document.querySelector('textarea'));"
     Instr_2 = r"var textareaI = document.querySelector('textarea');"
-    Instr_3 = r"textareaI.value = 'hello, how are you?'"
+    Instr_3 = r"textareaI.value = 'hello, how are you?';"
 
     # open a new tab of chatGPT, you must be logged in
     url = "https://chat.openai.com/chat"
@@ -26,12 +25,12 @@ class SubBot:
 
     # function to check internet connection
     def is_connected(self):
-        try:
-            socket.create_connection(("www.google.com", 80))
+        # try:
+            # socket.create_connection(("www.google.com", 80))
             return True
-        except OSError:
-            pass
-        return False
+        # except OSError:
+            # pass
+        # return False
 
     # function used to press enter, we have to run its in thread so make another separate function
     def enter(self,val):
@@ -59,10 +58,10 @@ class SubBot:
                     if process.returncode == 1:
                         self.count = self.count + 1
                         if self.count == len(self.listOfBrowser):
-                            self.flag = False;
+                            self.flag = False
                         continue
                     time.sleep(self.waitTime+4)
-
+                    
                     # oce browser is open use key of combiniation to open the console
                     pyautogui.hotkey('ctrl','shift',self.listOfCommand[self.listOfBrowser.index(i)])
 
@@ -70,15 +69,15 @@ class SubBot:
                     time.sleep(self.waitTime+1)
                     pyautogui.moveTo(x=1700, y=750, duration=1) # change it with your screen size, you can remove duration to speed up process
                     pyautogui.click()   # to click on console, this allow cursor to write in console
-                    keyboard.write(self.Instr_1)
-                    pyautogui.press('enter')
+                    # keyboard.write(self.Instr_1)
+                    # pyautogui.press('enter')
 
-                    time.sleep(self.waitTime)
+                    # time.sleep(self.waitTime)
                     keyboard.write(self.Instr_2)
                     pyautogui.press('enter')
 
-                    time.sleep(self.waitTime)
                     keyboard.write(self.Instr_3)
+                    time.sleep(self.waitTime+1+1)
                     pyautogui.press('enter')
 
                     # for quitting console
@@ -87,7 +86,7 @@ class SubBot:
                     pyautogui.press('enter')
 
                     # select the responce
-                    time.sleep(self.waitTime+5) # you change wait time if you think that your question is too long to responce
+                    time.sleep(self.waitTime+10) # you change wait time if you think that your question is too long to responce
                     left = 660    # the first caracter of question x position (adapt it with your screen size)
                     top = 210     # the first caracter of question y position (adapt it with your screen size)
                     width = 1200  # untill the end of the line in chatgpt     (adapt it with your screen size)
