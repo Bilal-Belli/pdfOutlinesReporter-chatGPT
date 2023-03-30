@@ -1,6 +1,6 @@
 <h3 align="left">Language And Frameworks :</h3>
 <div align="center">
-   <p align="center">Python</p>
+   <p align="center">Python (pyautogui)</p>
 </div>
 <h3 align="left">Demo:</h3>
 <div align="center">
